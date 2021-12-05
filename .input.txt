@@ -1,6 +1,6 @@
 Babies have around a hundred more bones than adults
 The Eiffel Tower can be fifteen centimeters taller during the summer
-twenty percent of Earth's oxygen is produced by the Amazon rainforest
+twenty percent of oxygen on Earth is produced by the Amazon rainforest
 Some metals are so reactive that they explode on contact with water
 A teaspoonful of neutron star would weigh six billion tons
 Hawaii moves seven point five centimeters closer to Alaska every year
@@ -16,18 +16,18 @@ The average human body carries ten times more bacterial cells than human cells
 There are actually over two dozen states of matter (that we know of)
 Killer whales are actually dolphins
 Grasshoppers have ears in their bellies
-Humans can't taste food without saliva
+Humans cannot taste food without saliva
 Octopuses have three hearts, nine brains, and blue blood
 An individual blood cell takes about 60 seconds to make a complete circuit of the body
 The known universe is made up of fifty billion galaxies
 Water can boil and freeze at the same time
 Lasers can get trapped in a waterfall
-We've got spacecraft hurtling towards the edge of our Solar System really, really fast
+We have spacecraft hurtling towards the edge of our Solar System really, really fast
 An egg looks like a crazy jellyfish underwater
 Female sharks have thicker skins than males
 The ocean is eight Empire State Buildings deep
 Your hand has a built-in snuff box
-Pompeii's plumbing was ahead of its time
+Pompeii plumbing was ahead of its time
 Some tornadoes can be faster than Formula One race cars
 There are 2,000 thunderstorms on Earth every minute
 The wind is silent until it blows against something
@@ -50,7 +50,7 @@ It takes eight minutes and 19 seconds for light to travel from the sun to Earth
 The footprints on the moon will be there for 100 million years
 A neutron star can spin 600 times in one second
 Sound does not carry in space
-The Earth's core is as hot as the surface of the sun
+The core of the Earth is as hot as the surface of the sun
 Every year over one million earthquakes shake the Earth
 The largest ever hailstone weighed over 1kg and fell in Bangladesh in 1986
 Every year lightning kills 1000 people
@@ -88,7 +88,7 @@ The grey whale migrates 12,500 miles from the Artic to Mexico and back every yea
 Each rubber molecule is made of 65,000 individual atoms
 Quasars emit more energy than 100 giant galaxies
 Light would take 0.13 seconds to travel around the Earth
-Males produce one thousand sperm cells each second – 86 million each day
+Males produce one thousand sperm cells each second
 One in every 2000 babies is born with a tooth
 Every hour the Universe expands by a billion miles in all directions
 The temperature in Antarctica plummets as low as -35 degrees Celsius
@@ -96,17 +96,17 @@ A thimbleful of a neutron star would weigh over 100 million tons
 The African Elephant gestates for 22 months
 The short-nosed Bandicoot has a gestation period of only 12 days
 The mortality rate if bitten by a Black Mamba snake is over 95%
-A dog’s sense of smell is 1,000 times more sensitive than a humans
+A dog's sense of smell is 1,000 times more sensitive than a humans
 A typical hurricane produces the energy equivalent to 8,000 one megaton bombs
 90% of those who die from hurricanes die from drowning
-To escape the Earth’s gravity a rocket need to travel at 7 miles a second
+To escape the Earth's gravity a rocket need to travel at 7 miles a second
 Microbial life can survive on the cooling rods of a nuclear reactor
 The human stomach can actually dissolve razor blades
 A laser can get trapped in water
-Earth’s oxygen is mostly produced by the ocean
-Animals use Earth’s magnetic field for orientation
+Earth's oxygen is mostly produced by the ocean
+Animals use Earth's magnetic field for orientation
 A cloud can weigh around a million pounds
-Rats can laugh when they’re tickled
+Rats can laugh when they're tickled
 Bananas are radioactive since they contain potassium
 There are more trees on Earth than stars in our galaxy
 It can rain diamonds on other planets like Neptune, Uranus, and Saturn
@@ -115,6 +115,6 @@ Water can exist in three states at once
 Helium can work against gravity
 About half of your body is bacteria
 We have no idea what most of the universe looks like
-Bats don’t get sick from most viruses
+Bats don't get sick from most viruses
 Beer is twice as fizzy as champagne
 There are also earthquakes (or moonquakes) on Moon

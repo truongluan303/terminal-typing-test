@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+ttype.exe
+ttype.egg-info/PKG-INFO
+ttype.egg-info/SOURCES.txt
+ttype.egg-info/dependency_links.txt
+ttype.egg-info/top_level.txt

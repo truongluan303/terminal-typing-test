@@ -7,7 +7,7 @@ with open("README.md", "r") as readme:
     
 setuptools.setup (
     name="ttype",
-    version="0.1",
+    version="0.0.1",
     scripts=["ttype.exe"],
     author="Luan Truong",
     author_email="truongluan303@gmail.com",

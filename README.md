@@ -11,7 +11,7 @@ The program uses curses module for the Terminal UI. If curses module is not alre
 
 
 ### PiPy Link: 
-https://pypi.org/project/ttype/0.1/
+https://pypi.org/project/ttype/
 
 
 ### Demo

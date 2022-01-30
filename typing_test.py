@@ -25,117 +25,118 @@ PROMPT_CODE = 4
 
 
 
-
-def main(stdscr) -> None:
+def mainloop(stdscr) -> None:
     ''' 
     main function
     '''
-    init_color(stdscr)
     
-    file_reader = FileReader()
-    file_reader.read_file(".input.txt")
-
-    stdscr.clear()
-    curses.noecho()
-
-    num_of_sentences = prompt_input(stdscr)
-    sentences = file_reader.get_random_sentences(num_of_sentences)
-
-
-    ''' start the typing test '''
-
-    start_time = time.time()
-    total_words = 0
-    words_typed = 0
-    wrong_words = 0
-    wpm = 0
-
-    curses.noecho()
-
-
-    for i in range(len(sentences)):
-        user_sentence = ""
-        sentence = sentences[i]
-        total_words += len(sentence.split())
-
-        centralize_text(stdscr, sentence)
+    while True:
+            
+        init_color(stdscr)
+        
+        file_reader = FileReader()
+        file_reader.read_file(".input.txt")
 
         stdscr.clear()
-        stdscr.refresh()
+        curses.noecho()
 
-        while True:
+        num_of_sentences = prompt_input(stdscr)
+        sentences = file_reader.get_random_sentences(num_of_sentences)
 
-            # calculate the current wpm
-            time_passed = (time.time() - start_time) / 60
-            if time_passed > 0:
-                wpm = (len(user_sentence.split()) + words_typed - wrong_words) // time_passed
 
-            # show the remaining sentences and the current wpm
-            stdscr.move(0, 0)
-            stdscr.addstr(f"Remaining Sentences: ")
-            stdscr.addstr(f"{len(sentences) - i - 1}\n", curses.color_pair(HIGHLIGHT_CODE))
-            stdscr.addstr(f"Words per Minute: ")
-            stdscr.addstr(f"{wpm:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
-            
-            # print the target sentence
-            x, y = centralize_text(stdscr, sentence)
+        ''' start the typing test '''
 
-            # print the user sentence on top of the target sentence
-            stdscr.move(x, y)
-            for j in range(len(user_sentence)):
+        start_time = time.time()
+        total_words = 0
+        words_typed = 0
+        wrong_words = 0
+        wpm = 0
 
-                color = curses.color_pair(CORRECT_CODE)
-                if j >= len(sentence) or user_sentence[j] != sentence[j]:
-                    color = curses.color_pair(ERROR_CODE)
+        curses.noecho()
 
-                stdscr.addstr(user_sentence[j], color)
 
-            # get the user key entered
-            key = stdscr.getch()
+        for i in range(len(sentences)):
+            user_sentence = ""
+            sentence = sentences[i]
+            total_words += len(sentence.split())
 
-            if key == 10:                           # if enter/newline
-                break
-            elif key == 27:                         # if escape
-                exit(0)
-            elif key == 8:                          # if backspace
-                user_sentence = user_sentence[:-1]
-            elif 32 <= key <= 126:                  # if text
-                user_sentence += chr(key)
+            centralize_text(stdscr, sentence)
 
-        
-        words_typed += len(user_sentence.split())
+            stdscr.clear()
+            stdscr.refresh()
 
-        user_sentence = user_sentence.split()
-        target = sentence.split()
+            while True:
 
-        # find the number of wrong words
-        for j in range(len(user_sentence)):
-            if j < len(target) and user_sentence[j] != target[j]:
-                wrong_words += 1
-            elif j >= len(target):
-                wrong_words += 1
+                # calculate the current wpm
+                time_passed = (time.time() - start_time) / 60
+                if time_passed > 0:
+                    wpm = (len(user_sentence.split()) + words_typed - wrong_words) // time_passed
+
+                # show the remaining sentences and the current wpm
+                stdscr.move(0, 0)
+                stdscr.addstr(f"Remaining Sentences: ")
+                stdscr.addstr(f"{len(sentences) - i - 1}\n", curses.color_pair(HIGHLIGHT_CODE))
+                stdscr.addstr(f"Words per Minute: ")
+                stdscr.addstr(f"{wpm:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
                 
+                # print the target sentence
+                x, y = centralize_text(stdscr, sentence)
 
-    ''' end the typing test and calculate and output the result '''
+                # print the user sentence on top of the target sentence
+                stdscr.move(x, y)
+                for j in range(len(user_sentence)):
 
-    duration = time.time() - start_time
-    accuracy = (total_words - wrong_words) / total_words
-    wpm = total_words // (duration / 60)
-    wpm *= accuracy
+                    color = curses.color_pair(CORRECT_CODE)
+                    if j >= len(sentence) or user_sentence[j] != sentence[j]:
+                        color = curses.color_pair(ERROR_CODE)
 
-    stdscr.clear()
-    stdscr.addstr("RESULT:\n\n", curses.color_pair(HIGHLIGHT_CODE))
-    stdscr.addstr(f"Total Words:\t")
-    stdscr.addstr(f"{total_words:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
-    stdscr.addstr(f"Total Errors:\t")
-    stdscr.addstr(f"{wrong_words:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
-    stdscr.addstr(f"Accuracy:\t")
-    stdscr.addstr(f"{accuracy*100:.2f}%\n", curses.color_pair(HIGHLIGHT_CODE))
-    stdscr.addstr(f"Final WPM:\t")
-    stdscr.addstr(f"{wpm:.0f}\n\n", curses.color_pair(HIGHLIGHT_CODE))
-    
-    # prompt the user if they want to replay
-    prompt_replay(stdscr)
+                    stdscr.addstr(user_sentence[j], color)
+
+                # get the user key entered
+                ch = stdscr.getch()
+
+                if ch == 10 or ch == curses.KEY_ENTER:      # if enter/newline
+                    break
+                elif ch == 27 or ch == curses.KEY_EXIT:     # if escape
+                    exit(0)
+                elif ch == curses.KEY_BACKSPACE:            # if backspace
+                    user_sentence = user_sentence[:-1]
+                elif 32 <= ch <= 126:                       # if text
+                    user_sentence += chr(ch)
+
+            
+            user_sentence = user_sentence.split()
+            words_typed += len(user_sentence)
+            target = sentence.split()
+
+            # find the number of wrong words
+            for j in range(len(user_sentence)):
+                if j < len(target) and user_sentence[j] != target[j]:
+                    wrong_words += 1
+                elif j >= len(target):
+                    wrong_words += 1
+                    
+
+        ''' end the typing test and calculate and output the result '''
+
+        duration = time.time() - start_time
+        accuracy = (total_words - wrong_words) / total_words
+        wpm = total_words // (duration / 60)
+        wpm *= accuracy
+
+        stdscr.clear()
+        stdscr.addstr("RESULT:\n\n", curses.color_pair(HIGHLIGHT_CODE))
+        stdscr.addstr(f"Total Words:\t")
+        stdscr.addstr(f"{total_words:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
+        stdscr.addstr(f"Total Errors:\t")
+        stdscr.addstr(f"{wrong_words:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
+        stdscr.addstr(f"Accuracy:\t")
+        stdscr.addstr(f"{accuracy*100:.2f}%\n", curses.color_pair(HIGHLIGHT_CODE))
+        stdscr.addstr(f"Final WPM:\t")
+        stdscr.addstr(f"{wpm:.0f}\n\n", curses.color_pair(HIGHLIGHT_CODE))
+        
+        # prompt the user if they want to replay
+        prompt_replay(stdscr)
 
 
 
@@ -182,13 +183,13 @@ def prompt_input(stdscr) -> int:
         stdscr.move(1, len(usr_input))
         c = stdscr.getch()
 
-        if c == 10:                         # if enter/newline
+        if c == 10:                             # if enter/newline
             break
-        elif c == 27:                       # if escape
+        elif c == 27 or c == curses.KEY_EXIT:   # if escape
             exit(0)
-        elif c == 8:                        # if backspace
+        elif c == curses.KEY_BACKSPACE:         # if backspace
             usr_input = usr_input[:-1]
-        elif 48 <= c <= 57:                 # if number
+        elif 48 <= c <= 57:                     # if number
             usr_input += chr(c)
             # input must not exceed 50
             if int(usr_input) > 50:
@@ -281,7 +282,10 @@ class FileReader():
 
 
 if __name__ == "__main__":
-    wrapper(main)
+    try:
+        wrapper(mainloop)
+    except KeyboardInterrupt:
+        print("Program has ended due to key board interupt")
 
 
 

@@ -223,9 +223,11 @@ def typing_test(stdscr) -> None:
 
             # show the remaining sentences and the current wpm
             stdscr.move(0, 0)
-            stdscr.addstr(f"Remaining Sentences: ")
+            stdscr.addstr("Remaining Sentences: ")
             stdscr.addstr(f"{len(sentences) - i - 1}\n", curses.color_pair(HIGHLIGHT_CODE))
-            stdscr.addstr(f"Words per Minute: ")
+            stdscr.addstr("Total wrong words: ")
+            stdscr.addstr(f"{wrong_words}\n", curses.color_pair(HIGHLIGHT_CODE))
+            stdscr.addstr("Words per Minute: ")
             stdscr.addstr(f"{wpm:.0f}\n", curses.color_pair(HIGHLIGHT_CODE))
             
             # print the target sentence
@@ -248,7 +250,10 @@ def typing_test(stdscr) -> None:
                 break
             elif ch == 27 or ch == curses.KEY_EXIT:     # if escape
                 exit(0)
-            elif ch == curses.KEY_BACKSPACE:            # if backspace
+            elif ch == curses.KEY_BACKSPACE \
+                or ch == 127 \
+                or str(ch) == "KEY_BACKSPACE" \
+                or str(ch) == "^?":                     # if backspace
                 user_sentence = user_sentence[:-1]
             elif 32 <= ch <= 126:                       # if text
                 user_sentence += chr(ch)
@@ -259,12 +264,16 @@ def typing_test(stdscr) -> None:
         target = sentence.split()
 
         # find the number of wrong words
+        # extra or missing words are also counted as wrong words
         for j in range(len(user_sentence)):
             if j < len(target) and user_sentence[j] != target[j]:
                 wrong_words += 1
             elif j >= len(target):
                 wrong_words += 1
-                
+        missing = len(target) != len(user_sentence)
+        if missing >= 0:
+            wrong_words += missing
+
 
     ''' end the typing test and calculate and output the result '''
 
@@ -336,7 +345,10 @@ def prompt_input(stdscr) -> int:
             break
         elif c == 27 or c == curses.KEY_EXIT:   # if escape
             exit(0)
-        elif c == curses.KEY_BACKSPACE:         # if backspace
+        elif c == curses.KEY_BACKSPACE \
+                or c == 127 \
+                or str(c) == "KEY_BACKSPACE" \
+                or str(c) == "^?":              # if backspace
             usr_input = usr_input[:-1]
         elif 48 <= c <= 57:                     # if number
             usr_input += chr(c)
